@@ -2,7 +2,7 @@
 
 Secure and modern attendance system using **Face Recognition** and **Fingerprint (Touch ID)** with **Angular + FastAPI + MySQL**.
 
-🔗 **Live Demo**: [https://angular-face-attendance.netlify.app](https://angular-face-attendance.netlify.app)
+🔗 **Live Demo**: [https://angular-attendance-app.netlify.app/login](https://angular-attendance-app.netlify.app/login)
 
 ## 🔧 Tech Stack
 - Angular 17 (Frontend)
