@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: face-attendance-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
+    plan: free
+    envVars:
+      - key: DB_HOST
+        value: localhost
+      - key: DB_USER
+        value: root
+      - key: DB_PASSWORD
+        value: root@123
+      - key: DB_NAME
+        value: attendance_db
