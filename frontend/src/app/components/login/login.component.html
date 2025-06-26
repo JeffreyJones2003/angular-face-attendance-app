@@ -1,0 +1,16 @@
+<!-- login.component.html -->
+<div class="container mt-5" style="max-width: 400px;">
+  <h3 class="mb-4">Admin Login</h3>
+  <div class="mb-3">
+    <label>Username</label>
+    <input [(ngModel)]="username" class="form-control" type="text" />
+  </div>
+  <div class="mb-3">
+    <label>Password</label>
+    <input [(ngModel)]="password" class="form-control" type="password" />
+  </div>
+  <div *ngIf="errorMessage" class="text-danger mb-2">
+    {{ errorMessage }}
+  </div>
+  <button (click)="login()" class="btn btn-primary w-100">Login</button>
+</div>

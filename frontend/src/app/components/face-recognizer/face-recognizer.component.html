@@ -1,0 +1,80 @@
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+
+      <!-- 📸 FACE RECOGNITION -->
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title mb-3">📸 Face Recognition Attendance</h4>
+
+          <button class="btn btn-outline-secondary mb-3" (click)="toggleWebcam()">Toggle Webcam</button>
+
+          <div *ngIf="useWebcam" class="mb-3">
+            <webcam
+              class="img-fluid border rounded"
+              [trigger]="triggerObservable"
+              (imageCapture)="handleImage($event)">
+            </webcam>
+            <button class="btn btn-warning mt-2" (click)="triggerSnapshot()">📸 Capture</button>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Upload Image</label>
+            <input type="file" (change)="onFileChange($event)" accept="image/*" class="form-control" />
+          </div>
+
+          <button class="btn btn-primary w-100" (click)="submitImage()">✅ Submit for Recognition</button>
+        </div>
+      </div>
+
+      <!-- 🔐 FINGERPRINT AUTH -->
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title mb-3">🔐 Fingerprint Authentication</h4>
+
+          <div class="d-flex flex-column gap-2">
+            <button class="btn btn-info w-100" (click)="verifyWithFingerprint()">🔒 Verify with Touch ID</button>
+            <button class="btn btn-secondary w-100" (click)="registerPasskey()">✍️ Register Touch ID</button>
+          </div>
+
+          <div *ngIf="resultMessage" class="alert mt-3" [ngClass]="{
+            'alert-success': resultMessage.startsWith('✅'),
+            'alert-danger': resultMessage.startsWith('❌')
+          }">
+            {{ resultMessage }}
+          </div>
+
+          <div *ngIf="loading" class="text-muted mt-2">⏳ Loading...</div>
+        </div>
+      </div>
+
+      <!-- 📝 ATTENDANCE LOGS -->
+      <div *ngIf="logs.length" class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="fw-bold mb-3">📝 Attendance Logs</h5>
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+              <thead class="table-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Method</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let log of logs">
+                  <td>{{ log.name }}</td>
+                  <td>{{ log.method }}</td>
+                  <td>{{ log.date }}</td>
+                  <td>{{ log.time }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
