@@ -1,0 +1,16 @@
+# Angular build artifacts
+/frontend/dist
+/frontend/.angular
+/frontend/node_modules
+
+# Python virtual environment
+/backend/venv
+__pycache__/
+*.pyc
+
+# macOS junk
+.DS_Store
+
+# IDE/editor settings
+.vscode/
+.idea/
