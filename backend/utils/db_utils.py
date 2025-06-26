@@ -1,5 +1,6 @@
 import mysql.connector
 from datetime import datetime
+import os  # 👈 for environment variables
 
 def log_attendance_mysql(name: str, method: str = "face"):
     now = datetime.now()
@@ -8,10 +9,11 @@ def log_attendance_mysql(name: str, method: str = "face"):
 
     try:
         conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="root@123",
-            database="attendance_db"
+            host=os.getenv("DB_HOST"),
+            port=int(os.getenv("DB_PORT", 3306)),  # default MySQL port
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_NAME")
         )
         cursor = conn.cursor()
         sql = "INSERT INTO attendance (name, method, date, time) VALUES (%s, %s, %s, %s)"
